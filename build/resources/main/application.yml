@@ -6,9 +6,20 @@ spring:
     name: demo
 
   datasource:
-    platform: mysql
-    url: jdbc:mysql://sqinstance.ctsrblyv5nlv.us-east-2.rds.amazonaws.com.com/netflix?autoReconnect=true # 변경해주세요
+    #platform: mysql
+    url: jdbc:mysql://sqinstance.ctsrblyv5nlv.us-east-2.rds.amazonaws.com:3306/netflix # 변경해주세요
     username:  admin # 변경해주세요
-    password:  1234 # 변경해주세요
+    password:  cds04264 # 변경해주세요
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
+    testOnBorrow: true
+    validationQuery: SELECT 1
     # driver-class-name: com.mysql.jdbc.Driver # mysql 5버전
+    #dialect: org.hibernate.dialect.MySQL8Dialect
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql : true
+    hibernate:
+      ddl-auto: create
