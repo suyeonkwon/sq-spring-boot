@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="99a5471a-857a-481d-9b68-ea2a9bbadc4f" name="netflix" url="http://www.suyeon.shop">
+        <fileTransfer rootFolder="/var/www/sq-spring-boot" accessType="SFTP" host="3.14.109.148" port="22" sshConfigId="5ca03637-782f-4216-94bc-527f09ea31fe" sshConfig="ubuntu@3.14.109.148:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
