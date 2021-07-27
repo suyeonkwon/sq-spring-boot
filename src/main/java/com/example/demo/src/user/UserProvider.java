@@ -30,7 +30,9 @@ public class UserProvider {
         this.userDao = userDao;
         this.jwtService = jwtService;
     }
-
+    /*
+    * 전체 유저 조회
+    * */
     public List<GetUserRes> getUsers() throws BaseException{
         try{
             List<GetUserRes> getUserRes = userDao.getUsers();
@@ -40,26 +42,30 @@ public class UserProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
-
-    public List<GetUserRes> getUsersByEmail(String email) throws BaseException{
-        try{
-            List<GetUserRes> getUsersRes = userDao.getUsersByEmail(email);
-            return getUsersRes;
-        }
-        catch (Exception exception) {
-            throw new BaseException(DATABASE_ERROR);
-        }
-                    }
-
-
-    public GetUserRes getUser(int userIdx) throws BaseException {
+    /*
+    * 유저 상세 조회
+    * */
+    public GetUserDtlRes getUser(int userId) throws BaseException {
         try {
-            GetUserRes getUserRes = userDao.getUser(userIdx);
-            return getUserRes;
+            GetUserDtlRes getUserDtlRes = userDao.getUser(userId);
+            return getUserDtlRes;
         } catch (Exception exception) {
+            exception.printStackTrace();
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+//    public List<GetUserRes> getUsersByEmail(String email) throws BaseException{
+//        try{
+//            List<GetUserRes> getUsersRes = userDao.getUsersByEmail(email);
+//            return getUsersRes;
+//        }
+//        catch (Exception exception) {
+//            throw new BaseException(DATABASE_ERROR);
+//        }
+//                    }
+//
+//
 
     public int checkEmail(String email) throws BaseException{
         try{
@@ -70,6 +76,10 @@ public class UserProvider {
     }
 
     public PostLoginRes logIn(PostLoginReq postLoginReq) throws BaseException{
+        //중복
+        if(checkUserStatus(postLoginReq.getEmail()).equals("R")){
+            throw new BaseException(REST_STATUS_USER);
+        }
         User user = userDao.getPwd(postLoginReq);
         String password;
         try {
@@ -79,14 +89,23 @@ public class UserProvider {
         }
 
         if(postLoginReq.getPassword().equals(password)){
-            int userIdx = userDao.getPwd(postLoginReq).getUserIdx();
-            String jwt = jwtService.createJwt(userIdx);
-            return new PostLoginRes(userIdx,jwt);
+            int userId = userDao.getPwd(postLoginReq).getUserId();
+            String jwt = jwtService.createJwt(userId);
+            return new PostLoginRes(userId,jwt);
         }
         else{
             throw new BaseException(FAILED_TO_LOGIN);
         }
 
     }
+    //status 확인
+    private String checkUserStatus(String email) throws BaseException {
+        try{
+            return userDao.checkUserStatus(email);
+        } catch (Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 
 }

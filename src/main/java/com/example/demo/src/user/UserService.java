@@ -11,9 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -39,7 +36,7 @@ public class UserService {
     public PostUserRes createUser(PostUserReq postUserReq) throws BaseException {
         //중복
         if(userProvider.checkEmail(postUserReq.getEmail()) ==1){
-            throw new BaseException(POST_USERS_EXISTS_EMAIL);
+            throw new BaseException(DUPLICATED_EMAIL);
         }
 
         String pwd;
@@ -51,10 +48,10 @@ public class UserService {
             throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
         }
         try{
-            int userIdx = userDao.createUser(postUserReq);
+            int userId = userDao.createUser(postUserReq);
             //jwt 발급.
-            String jwt = jwtService.createJwt(userIdx);
-            return new PostUserRes(jwt,userIdx);
+            String jwt = jwtService.createJwt(userId);
+            return new PostUserRes(jwt,userId);
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
@@ -67,6 +64,79 @@ public class UserService {
                 throw new BaseException(MODIFY_FAIL_USERNAME);
             }
         } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyMembership(PatchMembershipReq patchMembershipReq) throws BaseException {
+        try{
+            int result = userDao.modifyMembership(patchMembershipReq);
+            if(result == 0){
+                throw new BaseException(MODIFY_FAIL_MEMBERSHIP);
+            }
+        } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyEmail(PatchEmailReq patchEmailReq) throws BaseException{
+        //중복
+        if(userProvider.checkEmail(patchEmailReq.getEmail()) ==1){
+            throw new BaseException(DUPLICATED_EMAIL);
+        }
+
+        try{
+            int result = userDao.modifyEmail(patchEmailReq);
+            if(result == 0){
+                throw new BaseException(MODIFY_FAIL_EMAIL);
+            }
+        } catch(Exception exception){
+            exception.printStackTrace();
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public void modifyPassword(PatchPasswordReq patchPasswordReq) throws BaseException {
+        User user = userDao.getPwd(patchPasswordReq);
+        String password;
+        try {
+            password = new AES128(Secret.USER_INFO_PASSWORD_KEY).decrypt(user.getPassword());
+        } catch (Exception ignored) {
+            throw new BaseException(PASSWORD_DECRYPTION_ERROR);
+        }
+
+        if(patchPasswordReq.getPassword().equals(password)){
+            String pwd;
+            try{
+                //암호화
+                pwd = new AES128(Secret.USER_INFO_PASSWORD_KEY).encrypt(patchPasswordReq.getNewPassword());
+                patchPasswordReq.setNewPassword(pwd);
+            } catch (Exception ignored) {
+                throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
+            }
+            try{
+                int result = userDao.modifyPassword(patchPasswordReq);
+                if(result == 0){
+                    throw new BaseException(MODIFY_FAIL_PASSWORD);
+                }
+            } catch(Exception exception){
+                exception.printStackTrace();
+                throw new BaseException(DATABASE_ERROR);
+            }
+        }
+        else{
+            throw new BaseException(PASSWORD_NO_EQUALS_ERROR);
+        }
+    }
+
+    public void modifyPhone(PatchPhoneReq patchPhoneReq) throws BaseException {
+        try{
+            int result = userDao.modifyPhone(patchPhoneReq);
+            if(result == 0){
+                throw new BaseException(MODIFY_FAIL_PHONE_NUMBER);
+            }
+        } catch(Exception exception){
+            exception.printStackTrace();
             throw new BaseException(DATABASE_ERROR);
         }
     }
