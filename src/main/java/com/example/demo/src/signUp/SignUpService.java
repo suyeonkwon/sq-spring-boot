@@ -34,13 +34,19 @@ public class SignUpService {
 
     }
 
-    //POST
-    public PostSignUpRes createUser(PostSignUpReq postSignUpReq) throws BaseException {
+    public PostSignUpEmailRes createUserEmail(PostSignUpReq postSignUpReq) throws BaseException {
         //중복
         if(signUpProvider.checkEmail(postSignUpReq.getEmail()) ==1){
             throw new BaseException(DUPLICATED_EMAIL);
+        }else{
+            return new PostSignUpEmailRes(postSignUpReq.getEmail());
         }
-
+    }
+    //POST
+    public PostSignUpRes createUser(PostSignUpReq postSignUpReq) throws BaseException {
+        if(signUpProvider.checkEmail(postSignUpReq.getEmail()) ==1){
+            throw new BaseException(DUPLICATED_EMAIL);
+        }
         String pwd;
         try{
             //암호화
@@ -51,9 +57,8 @@ public class SignUpService {
         }
         try{
             int userId = signUpDao.createUser(postSignUpReq);
-            //jwt 발급.
-            String jwt = jwtService.createJwt(userId);
-            return new PostSignUpRes(jwt,userId);
+            String email = postSignUpReq.getEmail();
+            return new PostSignUpRes(userId,email);
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }
@@ -82,5 +87,4 @@ public class SignUpService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
-
 }

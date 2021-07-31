@@ -12,6 +12,7 @@ public enum BaseResponseStatus {
      */
     SUCCESS(true, 1000, "요청에 성공하였습니다."),
     SUCCESS_USER_SEARCH(true, 1000, "유저 조회 성공"),
+    SUCCESS_USER_EMAIL(true,1000,"회원가입 가능한 이메일 확인 성공"),
     SUCCESS_POST_USER(true,1000,"회원 가입 성공"),
     SUCCESS_LOGIN(true,1000,"로그인 성공"),
     SUCCESS_MODIFY_NEW_MEMBERSHIP(true,1000,"멤버십 등록 성공"),
@@ -39,6 +40,7 @@ public enum BaseResponseStatus {
     // [POST] /users
     USERS_EMPTY_EMAIL(false, 2015, "이메일을 입력해주세요."),
     POST_USERS_INVALID_EMAIL(false, 2016, "이메일 형식을 확인해주세요."),
+    POST_USERS_INVALID_PASSWORD(false,2017,"비밀번호는 6-60자 사이어야 합니다."),
     USERS_EMPTY_PASSWORD(false, 2018, "비밀번호를 입력해주세요."),
     USERS_EMPTY_NEW_PASSWORD(false,2019,"새 비밀번호를 입력해주세요."),
     USERS_EMPTY_NEW_PASSWORD_CHECK(false,2020,"새 비밀번호 확인을 입력해주세요."),

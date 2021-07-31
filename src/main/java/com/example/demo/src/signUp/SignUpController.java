@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import static com.example.demo.config.BaseResponseStatus.*;
+import static com.example.demo.utils.ValidationRegex.isRegexEmail;
+import static com.example.demo.utils.ValidationRegex.isRegexPassword;
 
 @RestController
-@RequestMapping("/app/signUp")
+@RequestMapping("/app/sign-up")
 public class SignUpController {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -35,14 +37,39 @@ public class SignUpController {
 
     /**
      * 회원가입 API
-     * [POST] /signUp
+     * [POST] /sign-up
      * @return BaseResponse<PostSignUpRes>
      */
     // Body
     @ResponseBody
-    @PostMapping("")
-    public BaseResponse<PostSignUpRes> createUser(@RequestBody PostSignUpReq postSignUpReq) {
+    @PostMapping("/email")
+    public BaseResponse<PostSignUpEmailRes> createUserEmail(@RequestBody PostSignUpReq postSignUpReq) {
         // TODO: email 관련한 짧은 validation 예시입니다. 그 외 더 부가적으로 추가해주세요!
+        if(postSignUpReq.getEmail() == null || postSignUpReq.getEmail() == ""){
+            return new BaseResponse<>(USERS_EMPTY_EMAIL);
+        }
+        //이메일 정규표현
+        if(!isRegexEmail(postSignUpReq.getEmail())){
+            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+        }
+
+        try{
+            PostSignUpEmailRes postSignUpEmailRes = signUpService.createUserEmail(postSignUpReq);
+            return new BaseResponse<>(postSignUpEmailRes,SUCCESS_USER_EMAIL);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    /**
+     * 회원가입 API
+     * [POST] /sign-up
+     * @return BaseResponse<PostSignUpRes>
+     */
+    // Body
+    @ResponseBody
+    @PostMapping("/password")
+    public BaseResponse<PostSignUpRes> createUser(@RequestBody PostSignUpReq postSignUpReq) {
         if(postSignUpReq.getEmail() == null || postSignUpReq.getEmail() == ""){
             return new BaseResponse<>(USERS_EMPTY_EMAIL);
         }
@@ -50,9 +77,13 @@ public class SignUpController {
             return new BaseResponse<>(USERS_EMPTY_PASSWORD);
         }
         //이메일 정규표현
-//        if(!isRegexEmail(postUserReq.getEmail())){
-//            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
-//        }
+        if(!isRegexEmail(postSignUpReq.getEmail())){
+            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+        }
+        //비밀번호 정규표현 6-60자
+        if(!isRegexPassword(postSignUpReq.getPassword())){
+            return new BaseResponse<>(POST_USERS_INVALID_PASSWORD);
+        }
         try{
             PostSignUpRes postSignUpRes = signUpService.createUser(postSignUpReq);
             return new BaseResponse<>(postSignUpRes,SUCCESS_POST_USER);
@@ -70,14 +101,6 @@ public class SignUpController {
     @PatchMapping("/membership")
     public BaseResponse<PatchMembershipRes> modifyMembership(@RequestBody PatchMembershipReq patchMembershipReq){
         try {
-            //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
-            //같다면 유저네임 변경
-//            PatchUserReq patchUserReq = new PatchUserReq(userIdx,user.getUserName());
             PatchMembershipRes patchMembershipRes = signUpService.modifyMembership(patchMembershipReq);
             return new BaseResponse<>(patchMembershipRes,SUCCESS_MODIFY_NEW_MEMBERSHIP);
         } catch (BaseException exception) {
@@ -94,12 +117,6 @@ public class SignUpController {
     @PostMapping("/credit")
     public BaseResponse<PostCreditRes> createCredit(@RequestBody PostCreditReq postCreditReq){
         try {
-            //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
             if(postCreditReq.getCreditNo() == null || postCreditReq.getCreditNo() == ""){
                 return new BaseResponse<>(EMPTY_CREDIT_NO);
             }

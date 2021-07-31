@@ -7,7 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PostSignUpReq {
+public class PostSignUpEmailRes {
     private String email;
-    private String password;
 }

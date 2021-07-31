@@ -7,7 +7,7 @@ spring:
 
   datasource:
     #platform: mysql
-    url: jdbc:mysql://sqinstance.ctsrblyv5nlv.us-east-2.rds.amazonaws.com:3306/netflix # 변경해주세요
+    url: jdbc:mysql://sqinstance.ctsrblyv5nlv.us-east-2.rds.amazonaws.com:3306/netflix?autoReconnect=true # 변경해주세요
     username:  admin # 변경해주세요
     password:  cds04264 # 변경해주세요
     driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전

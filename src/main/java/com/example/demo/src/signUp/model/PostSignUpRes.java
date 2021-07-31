@@ -8,7 +8,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class PostSignUpRes {
-    private String jwt;
     private int userId;
-//    private String email;
+    private String email;
+
+    public PostSignUpRes(String email) {
+        this.email = email;
+    }
 }

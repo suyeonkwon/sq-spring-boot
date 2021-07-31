@@ -6,10 +6,10 @@ com/example/demo/src/user/model/PatchMembershipReq.java
  com.example.demo.src.user.model.PatchMembershipReq
 com/example/demo/src/signUp/model/PostCreditReq.java
  com.example.demo.src.signUp.model.PostCreditReq
-com/example/demo/src/signUp/model/PostSignUpReq.java
- com.example.demo.src.signUp.model.PostSignUpReq
-com/example/demo/utils/ValidationRegex.java
- com.example.demo.utils.ValidationRegex
+com/example/demo/src/profile/model/PostProfileReq.java
+ com.example.demo.src.profile.model.PostProfileReq
+com/example/demo/src/profile/ProfileDao.java
+ com.example.demo.src.profile.ProfileDao
 com/example/demo/src/signUp/model/PatchMembershipRes.java
  com.example.demo.src.signUp.model.PatchMembershipRes
 com/example/demo/src/user/model/PostLoginRes.java
@@ -38,8 +38,8 @@ com/example/demo/src/test/TestController.java
  com.example.demo.src.test.TestController
 com/example/demo/src/user/model/PatchEmailReq.java
  com.example.demo.src.user.model.PatchEmailReq
-com/example/demo/src/signUp/model/PostSignUpRes.java
- com.example.demo.src.signUp.model.PostSignUpRes
+com/example/demo/src/profile/model/PostProfileRes.java
+ com.example.demo.src.profile.model.PostProfileRes
 com/example/demo/src/signUp/model/PatchMembershipReq.java
  com.example.demo.src.signUp.model.PatchMembershipReq
 com/example/demo/src/user/model/PostLoginReq.java
@@ -60,28 +60,28 @@ com/example/demo/src/user/model/PostUserRes.java
  com.example.demo.src.user.model.PostUserRes
 com/example/demo/src/user/model/User.java
  com.example.demo.src.user.model.User
+com/example/demo/utils/JwtService.java
+ com.example.demo.utils.JwtService
 com/example/demo/src/signUp/SignUpDao.java
  com.example.demo.src.signUp.SignUpDao
-com/example/demo/src/profile/ProfileDao.java
- com.example.demo.src.profile.ProfileDao
-com/example/demo/src/profile/model/PostProfileRes.java
- com.example.demo.src.profile.model.PostProfileRes
-com/example/demo/src/profile/model/PostProfileReq.java
- com.example.demo.src.profile.model.PostProfileReq
+com/example/demo/utils/ValidationRegex.java
+ com.example.demo.utils.ValidationRegex
+com/example/demo/src/signUp/model/PostSignUpReq.java
+ com.example.demo.src.signUp.model.PostSignUpReq
 com/example/demo/src/payment/PaymentController.java
  com.example.demo.src.payment.PaymentController
 com/example/demo/src/profile/ProfileProvider.java
  com.example.demo.src.profile.ProfileProvider
-com/example/demo/src/signUp/SignUpController.java
- com.example.demo.src.signUp.SignUpController
+com/example/demo/src/user/UserProvider.java
+ com.example.demo.src.user.UserProvider
 com/example/demo/src/signUp/SignUpProvider.java
  com.example.demo.src.signUp.SignUpProvider
 com/example/demo/src/user/UserController.java
  com.example.demo.src.user.UserController
 com/example/demo/config/BaseResponse.java
  com.example.demo.config.BaseResponse
-com/example/demo/src/signUp/SignUpService.java
- com.example.demo.src.signUp.SignUpService
+com/example/demo/src/profile/ProfileController.java
+ com.example.demo.src.profile.ProfileController
 com/example/demo/src/payment/PaymentProvider.java
  com.example.demo.src.payment.PaymentProvider
 com/example/demo/src/profile/ProfileService.java
@@ -94,9 +94,11 @@ com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
 com/example/demo/src/payment/PaymentService.java
  com.example.demo.src.payment.PaymentService
-com/example/demo/utils/JwtService.java
- com.example.demo.utils.JwtService
-com/example/demo/src/profile/ProfileController.java
- com.example.demo.src.profile.ProfileController
-com/example/demo/src/user/UserProvider.java
- com.example.demo.src.user.UserProvider
+com/example/demo/src/signUp/model/PostSignUpRes.java
+ com.example.demo.src.signUp.model.PostSignUpRes
+com/example/demo/src/signUp/SignUpController.java
+ com.example.demo.src.signUp.SignUpController
+com/example/demo/src/signUp/model/PostSignUpEmailRes.java
+ com.example.demo.src.signUp.model.PostSignUpEmailRes
+com/example/demo/src/signUp/SignUpService.java
+ com.example.demo.src.signUp.SignUpService
