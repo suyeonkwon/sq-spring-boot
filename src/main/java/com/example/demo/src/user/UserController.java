@@ -1,5 +1,7 @@
 package com.example.demo.src.user;
 
+import com.example.demo.src.login.model.PostLoginReq;
+import com.example.demo.src.login.model.PostLoginRes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.config.BaseException;
@@ -73,29 +75,7 @@ public class UserController {
 
     }
 
-    /**
-     * 로그인 API
-     * [POST] /users/logIn
-     * @return BaseResponse<PostLoginRes>
-     */
-    @ResponseBody
-    @PostMapping("/logIn")
-    public BaseResponse<PostLoginRes> logIn(@RequestBody PostLoginReq postLoginReq){
-        try{
-            // TODO: 로그인 값들에 대한 형식적인 validatin 처리해주셔야합니다!
-            // TODO: 유저의 status ex) 비활성화된 유저, 탈퇴한 유저 등을 관리해주고 있다면 해당 부분에 대한 validation 처리도 해주셔야합니다.
-            if(postLoginReq.getEmail() == null || postLoginReq.getEmail() == ""){
-                return new BaseResponse<>(USERS_EMPTY_EMAIL);
-            }
-            if(postLoginReq.getPassword() == null || postLoginReq.getPassword() == ""){
-                return new BaseResponse<>(USERS_EMPTY_PASSWORD);
-            }
-            PostLoginRes postLoginRes = userProvider.logIn(postLoginReq);
-            return new BaseResponse<>(postLoginRes,SUCCESS_LOGIN);
-        } catch (BaseException exception){
-            return new BaseResponse<>(exception.getStatus());
-        }
-    }
+
 
     /**
      * 유저 멤버십 변경 API

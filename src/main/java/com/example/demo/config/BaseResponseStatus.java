@@ -66,8 +66,8 @@ public enum BaseResponseStatus {
 
     // [POST] /users
     DUPLICATED_EMAIL(false, 3013, "중복된 이메일입니다."),
-    FAILED_TO_LOGIN(false,3014,"없는 아이디거나 비밀번호가 틀렸습니다."),
-
+    FAILED_TO_LOGIN(false,3014,"비밀번호가 틀렸습니다."),
+    NO_EXIST_USER(false,3017,"없는 아이디입니다. 회원가입을 먼저 진행해주세요."),
     REST_STATUS_USER(false,3015,"휴면 계정 입니다."),
     PASSWORD_NO_EQUALS_ERROR(false, 3016, "비밀번호가 틀렸습니다."),
 

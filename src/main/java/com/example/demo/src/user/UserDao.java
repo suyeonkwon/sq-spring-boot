@@ -1,6 +1,7 @@
 package com.example.demo.src.user;
 
 
+import com.example.demo.src.login.model.PostLoginReq;
 import com.example.demo.src.user.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -79,21 +80,6 @@ public class UserDao {
                 getUserParams);
     }
 
-//    public List<GetUserRes> getUsersByEmail(String email){
-//        String getUsersByEmailQuery = "select * from UserInfo where email =?";
-//        String getUsersByEmailParams = email;
-//        return this.jdbcTemplate.query(getUsersByEmailQuery,
-//                (rs, rowNum) -> new GetUserRes(
-//                        rs.getInt("userIdx"),
-//                        rs.getString("userName"),
-//                        rs.getString("ID"),
-//                        rs.getString("Email"),
-//                        rs.getString("password")),
-//                getUsersByEmailParams);
-//    }
-//
-    
-
     public int createUser(PostUserReq postUserReq){
 //        String createUserQuery = "insert into UserInfo (userName, ID, password, email) VALUES (?,?,?,?)";
         String createUserQuery = "INSERT INTO netflix.USER_TB (membershipCd, password, membershipStartedAt, phoneNumber, isMemberShipUsed, createdAt, updatedAt, status, email) VALUES (null, ?, null, null, DEFAULT, DEFAULT, DEFAULT, DEFAULT, ?)";
@@ -135,6 +121,7 @@ public class UserDao {
                 );
 
     }
+
     public User getPwd(PatchPasswordReq patchPasswordReq){
         String getPwdQuery = "select userId, password, email from USER_TB where userId = ?";
         int getPwdParams = patchPasswordReq.getUserId();
