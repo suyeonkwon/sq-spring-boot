@@ -26,8 +26,8 @@ com/example/demo/src/signUp/model/PostSignUpEmailRes.java
  com.example.demo.src.signUp.model.PostSignUpEmailRes
 com/example/demo/src/profile/model/PostProfileRes.java
  com.example.demo.src.profile.model.PostProfileRes
-com/example/demo/src/content/ContentService.java
- com.example.demo.src.content.ContentService
+com/example/demo/src/setting/SettingProvider.java
+ com.example.demo.src.setting.SettingProvider
 com/example/demo/src/content/model/GetEpisodeRes.java
  com.example.demo.src.content.model.GetEpisodeRes
 com/example/demo/src/keep/model/PostKeepRes.java
@@ -84,8 +84,8 @@ com/example/demo/src/setting/model/PatchRatedReq.java
  com.example.demo.src.setting.model.PatchRatedReq
 com/example/demo/src/user/model/PatchUserReq.java
  com.example.demo.src.user.model.PatchUserReq
-com/example/demo/src/login/LoginService.java
- com.example.demo.src.login.LoginService
+com/example/demo/config/BaseException.java
+ com.example.demo.config.BaseException
 com/example/demo/src/keep/KeepDao.java
  com.example.demo.src.keep.KeepDao
 com/example/demo/src/profile/model/Profile.java
@@ -104,67 +104,67 @@ com/example/demo/src/keep/model/Keep.java
  com.example.demo.src.keep.model.Keep
 com/example/demo/src/user/model/PatchPhoneReq.java
  com.example.demo.src.user.model.PatchPhoneReq
-com/example/demo/src/profile/ProfileController.java
- com.example.demo.src.profile.ProfileController
+com/example/demo/src/profile/ProfileDao.java
+ com.example.demo.src.profile.ProfileDao
 com/example/demo/utils/AES128.java
  com.example.demo.utils.AES128
 com/example/demo/src/test/TestController.java
  com.example.demo.src.test.TestController
-com/example/demo/src/setting/SettingController.java
- com.example.demo.src.setting.SettingController
-com/example/demo/src/keep/KeepService.java
- com.example.demo.src.keep.KeepService
+com/example/demo/src/user/UserProvider.java
+ com.example.demo.src.user.UserProvider
+com/example/demo/src/profile/model/GetProfileRes.java
+ com.example.demo.src.profile.model.GetProfileRes
 com/example/demo/src/content/ContentDao.java
  com.example.demo.src.content.ContentDao
-com/example/demo/src/content/ContentController.java
- com.example.demo.src.content.ContentController
+com/example/demo/src/keep/KeepProvider.java
+ com.example.demo.src.keep.KeepProvider
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
 com/example/demo/src/login/LoginProvider.java
  com.example.demo.src.login.LoginProvider
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
-com/example/demo/src/payment/PaymentController.java
- com.example.demo.src.payment.PaymentController
-com/example/demo/src/signUp/SignUpController.java
- com.example.demo.src.signUp.SignUpController
-com/example/demo/src/content/ContentProvider.java
- com.example.demo.src.content.ContentProvider
-com/example/demo/src/signUp/SignUpProvider.java
- com.example.demo.src.signUp.SignUpProvider
-com/example/demo/src/profile/ProfileService.java
- com.example.demo.src.profile.ProfileService
-com/example/demo/config/BaseResponse.java
- com.example.demo.config.BaseResponse
-com/example/demo/src/keep/KeepController.java
- com.example.demo.src.keep.KeepController
-com/example/demo/src/signUp/SignUpService.java
- com.example.demo.src.signUp.SignUpService
-com/example/demo/src/profile/ProfileDao.java
- com.example.demo.src.profile.ProfileDao
-com/example/demo/src/payment/PaymentService.java
- com.example.demo.src.payment.PaymentService
-com/example/demo/src/setting/SettingProvider.java
- com.example.demo.src.setting.SettingProvider
-com/example/demo/src/keep/KeepProvider.java
- com.example.demo.src.keep.KeepProvider
-com/example/demo/src/payment/PaymentProvider.java
- com.example.demo.src.payment.PaymentProvider
-com/example/demo/src/profile/model/GetProfileRes.java
- com.example.demo.src.profile.model.GetProfileRes
-com/example/demo/src/setting/SettingService.java
- com.example.demo.src.setting.SettingService
-com/example/demo/src/login/LoginController.java
- com.example.demo.src.login.LoginController
-com/example/demo/config/BaseException.java
- com.example.demo.config.BaseException
 com/example/demo/src/user/model/GetUserDtlRes.java
  com.example.demo.src.user.model.GetUserDtlRes
 com/example/demo/src/user/UserDao.java
  com.example.demo.src.user.UserDao
-com/example/demo/src/user/UserService.java
- com.example.demo.src.user.UserService
+com/example/demo/src/content/ContentProvider.java
+ com.example.demo.src.content.ContentProvider
+com/example/demo/src/signUp/SignUpProvider.java
+ com.example.demo.src.signUp.SignUpProvider
+com/example/demo/src/payment/PaymentProvider.java
+ com.example.demo.src.payment.PaymentProvider
+com/example/demo/config/BaseResponse.java
+ com.example.demo.config.BaseResponse
+com/example/demo/src/setting/SettingController.java
+ com.example.demo.src.setting.SettingController
+com/example/demo/src/payment/PaymentController.java
+ com.example.demo.src.payment.PaymentController
+com/example/demo/src/keep/KeepService.java
+ com.example.demo.src.keep.KeepService
+com/example/demo/src/signUp/SignUpController.java
+ com.example.demo.src.signUp.SignUpController
 com/example/demo/src/user/UserController.java
  com.example.demo.src.user.UserController
-com/example/demo/src/user/UserProvider.java
- com.example.demo.src.user.UserProvider
+com/example/demo/src/keep/KeepController.java
+ com.example.demo.src.keep.KeepController
+com/example/demo/src/signUp/SignUpService.java
+ com.example.demo.src.signUp.SignUpService
+com/example/demo/src/content/ContentController.java
+ com.example.demo.src.content.ContentController
+com/example/demo/src/user/UserService.java
+ com.example.demo.src.user.UserService
+com/example/demo/src/profile/ProfileService.java
+ com.example.demo.src.profile.ProfileService
+com/example/demo/src/setting/SettingService.java
+ com.example.demo.src.setting.SettingService
+com/example/demo/src/content/ContentService.java
+ com.example.demo.src.content.ContentService
+com/example/demo/src/login/LoginController.java
+ com.example.demo.src.login.LoginController
+com/example/demo/src/payment/PaymentService.java
+ com.example.demo.src.payment.PaymentService
+com/example/demo/src/profile/ProfileController.java
+ com.example.demo.src.profile.ProfileController
+com/example/demo/src/login/LoginService.java
+ com.example.demo.src.login.LoginService
