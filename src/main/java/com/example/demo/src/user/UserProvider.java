@@ -110,4 +110,11 @@ public class UserProvider {
     }
 
 
+    public int checkMembership(String membershipCd) throws BaseException {
+        try{
+            return userDao.checkMembership(membershipCd);
+        }catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

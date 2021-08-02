@@ -69,6 +69,9 @@ public class UserService {
     }
 
     public void modifyMembership(PatchMembershipReq patchMembershipReq) throws BaseException {
+        if(userProvider.checkMembership(patchMembershipReq.getMembershipCd()) == 0){
+            throw new BaseException(NO_EXIST_MEMBERSHIP);
+        }
         try{
             int result = userDao.modifyMembership(patchMembershipReq);
             if(result == 0){

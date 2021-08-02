@@ -171,4 +171,16 @@ public class UserDao {
 
         return this.jdbcTemplate.update(modifyPhoneQuery,modifyPhoneQueryParams);
     }
+
+    public int checkMembership(String membershipCd) {
+        String checkMembershipQuery = "select exists(\n" +
+                "    select commDtlCd from COMM_DTL_TB where commCd = 'membership' and\n" +
+                "                                            status = 'A' and\n" +
+                "                                            commDtlCd = ? \n" +
+                "           )";
+        String checkMembershipParams = membershipCd;
+        return this.jdbcTemplate.queryForObject(checkMembershipQuery,
+                int.class,
+                checkMembershipParams);
+    }
 }

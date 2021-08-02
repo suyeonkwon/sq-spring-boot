@@ -15,6 +15,7 @@ import java.util.List;
 
 
 import static com.example.demo.config.BaseResponseStatus.*;
+import static com.example.demo.utils.ValidationRegex.*;
 
 @RestController
 @RequestMapping("/app/users")
@@ -76,7 +77,6 @@ public class UserController {
     }
 
 
-
     /**
      * 유저 멤버십 변경 API
      * [PATCH] /users/membership
@@ -87,16 +87,15 @@ public class UserController {
     public BaseResponse<String> modifyMembership(@RequestBody PatchMembershipReq patchMembershipReq){
         try {
             //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
-            //같다면 유저네임 변경
-//            PatchUserReq patchUserReq = new PatchUserReq(userIdx,user.getUserName());
+            int userIdxByJwt = jwtService.getUserId();
+            int userId = patchMembershipReq.getUserId();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userId != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+
             userService.modifyMembership(patchMembershipReq);
-            String result = "";
-            return new BaseResponse<>(result,SUCCESS_MODIFY_MEMBERSHIP);
+            return new BaseResponse<>(SUCCESS_MODIFY_MEMBERSHIP);
         } catch (BaseException exception) {
             exception.printStackTrace();
             return new BaseResponse<>((exception.getStatus()));
@@ -113,19 +112,21 @@ public class UserController {
     public BaseResponse<String> modifyEmail(@RequestBody PatchEmailReq patchEmailReq){
         try {
             //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
-            //같다면 유저네임 변경
-//            PatchUserReq patchUserReq = new PatchUserReq(userIdx,user.getUserName());
+            int userIdxByJwt = jwtService.getUserId();
+            int userId = patchEmailReq.getUserId();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userId != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
             if(patchEmailReq.getEmail() == null || patchEmailReq.getEmail() == ""){
                 return new BaseResponse<>(USERS_EMPTY_EMAIL);
             }
+            //이메일 정규표현
+            if(!isRegexEmail(patchEmailReq.getEmail())){
+                return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+            }
             userService.modifyEmail(patchEmailReq);
-            String result = "";
-            return new BaseResponse<>(result,SUCCESS_MODIFY_EMAIL);
+            return new BaseResponse<>(SUCCESS_MODIFY_EMAIL);
         } catch (BaseException exception) {
             exception.printStackTrace();
             return new BaseResponse<>((exception.getStatus()));
@@ -141,11 +142,12 @@ public class UserController {
     public BaseResponse<String> modifyPassword(@RequestBody PatchPasswordReq patchPasswordReq){
         try {
             //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
+            int userIdxByJwt = jwtService.getUserId();
+            int userId = patchPasswordReq.getUserId();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userId != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
             if(patchPasswordReq.getPassword() == null || patchPasswordReq.getPassword() == ""){
                 return new BaseResponse<>(USERS_EMPTY_PASSWORD);
             }
@@ -158,9 +160,12 @@ public class UserController {
             if(!patchPasswordReq.getNewPassword().equals(patchPasswordReq.getNewPasswordCheck())){
                 return new BaseResponse<>(USERS_NO_EQUALS_PASSWORD);
             }
+            //비밀번호 정규표현 6-60자
+            if(!isRegexPassword(patchPasswordReq.getNewPassword())){
+                return new BaseResponse<>(POST_USERS_INVALID_PASSWORD);
+            }
             userService.modifyPassword(patchPasswordReq);
-            String result = "";
-            return new BaseResponse<>(result,SUCCESS_MODIFY_PASSWORD);
+            return new BaseResponse<>(SUCCESS_MODIFY_PASSWORD);
         } catch (BaseException exception) {
             exception.printStackTrace();
             return new BaseResponse<>((exception.getStatus()));
@@ -175,20 +180,21 @@ public class UserController {
     @PatchMapping("/phone")
     public BaseResponse<String> modifyPhone(@RequestBody PatchPhoneReq patchPhoneReq){
         try {
-            //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
-            //같다면 유저네임 변경
-//            PatchUserReq patchUserReq = new PatchUserReq(userIdx,user.getUserName());
+//            jwt에서 idx 추출.
+            int userIdxByJwt = jwtService.getUserId();
+            int userId = patchPhoneReq.getUserId();
+            //userIdx와 접근한 유저가 같은지 확인
+            if(userId != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
             if(patchPhoneReq.getPhoneNumber() == null || patchPhoneReq.getPhoneNumber() == ""){
                 return new BaseResponse<>(USERS_EMPTY_PHONE_NUMBER);
             }
+            if(!isRegexPhone(patchPhoneReq.getPhoneNumber())){
+                return new BaseResponse<>(USERS_INVALID_PHONE);
+            }
             userService.modifyPhone(patchPhoneReq);
-            String result = "";
-            return new BaseResponse<>(result,SUCCESS_MODIFY_PHONE_NUMBER);
+            return new BaseResponse<>(SUCCESS_MODIFY_PHONE_NUMBER);
         } catch (BaseException exception) {
             exception.printStackTrace();
             return new BaseResponse<>((exception.getStatus()));
