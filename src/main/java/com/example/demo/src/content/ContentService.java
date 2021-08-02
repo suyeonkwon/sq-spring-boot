@@ -8,11 +8,13 @@ import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.example.demo.config.BaseResponseStatus.DATABASE_ERROR;
 import static com.example.demo.config.BaseResponseStatus.MODIFY_FAIL_KEEP_STATUS;
 
 @Service
+@Transactional
 public class ContentService {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
