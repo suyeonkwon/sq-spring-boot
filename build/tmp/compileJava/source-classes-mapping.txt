@@ -4,117 +4,135 @@ com/example/demo/src/signUp/model/PostSignUpReq.java
  com.example.demo.src.signUp.model.PostSignUpReq
 com/example/demo/src/signUp/model/PostCreditReq.java
  com.example.demo.src.signUp.model.PostCreditReq
-com/example/demo/utils/ValidationRegex.java
- com.example.demo.utils.ValidationRegex
+com/example/demo/src/user/UserDao.java
+ com.example.demo.src.user.UserDao
 com/example/demo/src/signUp/model/PatchMembershipRes.java
  com.example.demo.src.signUp.model.PatchMembershipRes
 com/example/demo/src/user/model/GetUserDtlRes.java
  com.example.demo.src.user.model.GetUserDtlRes
-com/example/demo/src/profile/ProfileService.java
- com.example.demo.src.profile.ProfileService
-com/example/demo/config/BaseResponseStatus.java
- com.example.demo.config.BaseResponseStatus
+com/example/demo/src/user/model/User.java
+ com.example.demo.src.user.model.User
+com/example/demo/src/profile/model/PostProfileReq.java
+ com.example.demo.src.profile.model.PostProfileReq
 com/example/demo/src/signUp/model/PostSignUpEmailRes.java
  com.example.demo.src.signUp.model.PostSignUpEmailRes
 com/example/demo/src/profile/model/PostProfileRes.java
  com.example.demo.src.profile.model.PostProfileRes
 com/example/demo/src/profile/model/GetProfileRes.java
  com.example.demo.src.profile.model.GetProfileRes
-com/example/demo/src/payment/PaymentController.java
- com.example.demo.src.payment.PaymentController
-com/example/demo/src/profile/ProfileDao.java
- com.example.demo.src.profile.ProfileDao
-com/example/demo/src/payment/PaymentDao.java
- com.example.demo.src.payment.PaymentDao
+com/example/demo/src/WebSecurityConfig.java
+ com.example.demo.src.WebSecurityConfig
+com/example/demo/src/payment/model/GetPaymentMembershipRes.java
+ com.example.demo.src.payment.model.GetPaymentMembershipRes
+com/example/demo/src/payment/model/GetPaymentReq.java
+ com.example.demo.src.payment.model.GetPaymentReq
 com/example/demo/config/secret/Secret.java
  com.example.demo.config.secret.Secret
 com/example/demo/src/payment/model/PatchCreditReq.java
  com.example.demo.src.payment.model.PatchCreditReq
 com/example/demo/src/signUp/model/PostCreditRes.java
  com.example.demo.src.signUp.model.PostCreditRes
-com/example/demo/src/login/LoginDao.java
- com.example.demo.src.login.LoginDao
+com/example/demo/src/test/TestController.java
+ com.example.demo.src.test.TestController
 com/example/demo/src/login/model/PostLoginRes.java
  com.example.demo.src.login.model.PostLoginRes
 com/example/demo/src/user/model/PostUserRes.java
  com.example.demo.src.user.model.PostUserRes
-com/example/demo/config/BaseResponse.java
- com.example.demo.config.BaseResponse
+com/example/demo/src/user/model/PatchUserReq.java
+ com.example.demo.src.user.model.PatchUserReq
 com/example/demo/src/signUp/model/PostSignUpRes.java
  com.example.demo.src.signUp.model.PostSignUpRes
 com/example/demo/src/user/model/PatchMembershipReq.java
  com.example.demo.src.user.model.PatchMembershipReq
-com/example/demo/src/user/UserService.java
- com.example.demo.src.user.UserService
-com/example/demo/config/BaseException.java
- com.example.demo.config.BaseException
-com/example/demo/src/signUp/model/PatchMembershipReq.java
- com.example.demo.src.signUp.model.PatchMembershipReq
-com/example/demo/src/signUp/SignUpDao.java
- com.example.demo.src.signUp.SignUpDao
-com/example/demo/src/payment/PaymentService.java
- com.example.demo.src.payment.PaymentService
-com/example/demo/src/profile/ProfileController.java
- com.example.demo.src.profile.ProfileController
-com/example/demo/src/user/model/PostUserReq.java
- com.example.demo.src.user.model.PostUserReq
-com/example/demo/src/signUp/SignUpController.java
- com.example.demo.src.signUp.SignUpController
-com/example/demo/src/kakao/KakaoDao.java
- com.example.demo.src.kakao.KakaoDao
-com/example/demo/src/profile/model/Profile.java
- com.example.demo.src.profile.model.Profile
-com/example/demo/src/user/model/PatchPhoneReq.java
- com.example.demo.src.user.model.PatchPhoneReq
-com/example/demo/src/user/UserDao.java
- com.example.demo.src.user.UserDao
-com/example/demo/utils/AES128.java
- com.example.demo.utils.AES128
-com/example/demo/src/user/model/PatchUserReq.java
- com.example.demo.src.user.model.PatchUserReq
-com/example/demo/src/payment/model/GetPaymentDtlRes.java
- com.example.demo.src.payment.model.GetPaymentDtlRes
-com/example/demo/src/WebSecurityConfig.java
- com.example.demo.src.WebSecurityConfig
-com/example/demo/src/test/TestController.java
- com.example.demo.src.test.TestController
+com/example/demo/src/user/model/GetUserRes.java
+ com.example.demo.src.user.model.GetUserRes
 com/example/demo/src/user/model/PatchEmailReq.java
  com.example.demo.src.user.model.PatchEmailReq
-com/example/demo/src/profile/ProfileProvider.java
- com.example.demo.src.profile.ProfileProvider
-com/example/demo/src/profile/model/PostProfileReq.java
- com.example.demo.src.profile.model.PostProfileReq
+com/example/demo/src/signUp/model/PatchMembershipReq.java
+ com.example.demo.src.signUp.model.PatchMembershipReq
+com/example/demo/src/login/model/PostLoginReq.java
+ com.example.demo.src.login.model.PostLoginReq
+com/example/demo/src/payment/model/GetPaymentDtlRes.java
+ com.example.demo.src.payment.model.GetPaymentDtlRes
+com/example/demo/utils/AES128.java
+ com.example.demo.utils.AES128
+com/example/demo/src/user/model/PostUserReq.java
+ com.example.demo.src.user.model.PostUserReq
+com/example/demo/DemoApplication.java
+ com.example.demo.DemoApplication
+com/example/demo/src/user/model/PatchPasswordReq.java
+ com.example.demo.src.user.model.PatchPasswordReq
+com/example/demo/src/payment/PaymentDao.java
+ com.example.demo.src.payment.PaymentDao
+com/example/demo/src/user/model/PatchPhoneReq.java
+ com.example.demo.src.user.model.PatchPhoneReq
+com/example/demo/src/signUp/SignUpDao.java
+ com.example.demo.src.signUp.SignUpDao
+com/example/demo/src/login/LoginDao.java
+ com.example.demo.src.login.LoginDao
 com/example/demo/src/login/LoginService.java
  com.example.demo.src.login.LoginService
+com/example/demo/src/profile/model/Profile.java
+ com.example.demo.src.profile.model.Profile
+com/example/demo/src/profile/model/PostProfileLoginReq.java
+ com.example.demo.src.profile.model.PostProfileLoginReq
+com/example/demo/src/profile/model/PostProfileLoginRes.java
+ com.example.demo.src.profile.model.PostProfileLoginRes
+com/example/demo/utils/ValidationRegex.java
+ com.example.demo.utils.ValidationRegex
+com/example/demo/src/profile/model/PatchProfileLockReq.java
+ com.example.demo.src.profile.model.PatchProfileLockReq
+com/example/demo/src/profile/ProfileDao.java
+ com.example.demo.src.profile.ProfileDao
+com/example/demo/src/setting/model/GetViewedRes.java
+ com.example.demo.src.setting.model.GetViewedRes
+com/example/demo/src/setting/model/PatchViewedHidReq.java
+ com.example.demo.src.setting.model.PatchViewedHidReq
+com/example/demo/src/setting/model/GetRatedRes.java
+ com.example.demo.src.setting.model.GetRatedRes
+com/example/demo/src/setting/SettingController.java
+ com.example.demo.src.setting.SettingController
+com/example/demo/src/payment/PaymentController.java
+ com.example.demo.src.payment.PaymentController
+com/example/demo/src/profile/ProfileProvider.java
+ com.example.demo.src.profile.ProfileProvider
+com/example/demo/src/signUp/SignUpController.java
+ com.example.demo.src.signUp.SignUpController
 com/example/demo/src/signUp/SignUpProvider.java
  com.example.demo.src.signUp.SignUpProvider
 com/example/demo/src/user/UserController.java
  com.example.demo.src.user.UserController
-com/example/demo/src/kakao/KakaoProvider.java
- com.example.demo.src.kakao.KakaoProvider
+com/example/demo/src/setting/SettingDao.java
+ com.example.demo.src.setting.SettingDao
+com/example/demo/config/BaseResponse.java
+ com.example.demo.config.BaseResponse
 com/example/demo/src/signUp/SignUpService.java
  com.example.demo.src.signUp.SignUpService
+com/example/demo/src/setting/SettingProvider.java
+ com.example.demo.src.setting.SettingProvider
 com/example/demo/src/payment/PaymentProvider.java
  com.example.demo.src.payment.PaymentProvider
-com/example/demo/src/login/model/PostLoginReq.java
- com.example.demo.src.login.model.PostLoginReq
-com/example/demo/src/user/model/User.java
- com.example.demo.src.user.model.User
-com/example/demo/src/user/model/GetUserRes.java
- com.example.demo.src.user.model.GetUserRes
+com/example/demo/src/user/UserService.java
+ com.example.demo.src.user.UserService
+com/example/demo/src/profile/ProfileService.java
+ com.example.demo.src.profile.ProfileService
+com/example/demo/src/setting/SettingService.java
+ com.example.demo.src.setting.SettingService
+com/example/demo/config/BaseResponseStatus.java
+ com.example.demo.config.BaseResponseStatus
 com/example/demo/src/login/LoginController.java
  com.example.demo.src.login.LoginController
-com/example/demo/DemoApplication.java
- com.example.demo.DemoApplication
+com/example/demo/config/BaseException.java
+ com.example.demo.config.BaseException
 com/example/demo/src/login/LoginProvider.java
  com.example.demo.src.login.LoginProvider
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
-com/example/demo/src/user/model/PatchPasswordReq.java
- com.example.demo.src.user.model.PatchPasswordReq
+com/example/demo/src/payment/PaymentService.java
+ com.example.demo.src.payment.PaymentService
+com/example/demo/src/setting/model/PatchRatedReq.java
+ com.example.demo.src.setting.model.PatchRatedReq
 com/example/demo/src/user/UserProvider.java
  com.example.demo.src.user.UserProvider
-com/example/demo/src/kakao/KakaoController.java
- com.example.demo.src.kakao.KakaoController
-com/example/demo/src/kakao/KakaoService.java
- com.example.demo.src.kakao.KakaoService
+com/example/demo/src/profile/ProfileController.java
+ com.example.demo.src.profile.ProfileController

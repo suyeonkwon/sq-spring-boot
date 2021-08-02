@@ -15,6 +15,7 @@ public enum BaseResponseStatus {
     SUCCESS_USER_EMAIL(true,1000,"회원가입 가능한 이메일 확인 성공"),
     SUCCESS_POST_USER(true,1000,"회원 가입 성공"),
     SUCCESS_LOGIN(true,1000,"로그인 성공"),
+    SUCCESS_LOGIN_KAKAO(true,1000,"카카오 로그인 성공"),
     SUCCESS_MODIFY_NEW_MEMBERSHIP(true,1000,"멤버십 등록 성공"),
     SUCCESS_MODIFY_MEMBERSHIP(true,1000,"멤버십 수정 성공"),
     SUCCESS_MODIFY_CREDIT(true,1000,"결제정보 수정 성공"),
@@ -25,6 +26,14 @@ public enum BaseResponseStatus {
     SUCCESS_PAYMENT_DTL_SEARCH(true,1000,"결제상세정보 조회 성공"),
     SUCCESS_PROFILE_SEARCH(true,1000,"프로필 조회 성공"),
     SUCCESS_POST_PROFILE(true,1000,"프로필 등록 성공"),
+    SUCCESS_PAYMENT_MEMBERSHIP_SEARCH(true,1000,"결제상세정보 멤버십 조회 성공"),
+    SUCCESS_PROFILE_LOCK(true,1000,"프로필 잠금 설정 저장 성공"),
+    SUCCESS_PROFILE_LOGIN(true,1000,"프로필 로그인 성공"),
+    SUCCESS_VIEWED_SEARCH(true,1000,"시청기록 조회 성공"),
+    SUCCESS_MODIFY_VIEWED_HIDDEN(true,1000,"시청기록 숨김 성공"),
+    SUCCESS_RATED_SEARCH(true,1000,"평가기록 조회 성공"),
+    SUCCESS_MODIFY_RATED_STATUS(true,1000,"평가기록 삭제 성공"),
+    SUCCESS_MODIFY_RATED(true,1000,"평가기록 수정 성공"),
     /**
      * 2000 : Request 오류
      */
@@ -41,12 +50,14 @@ public enum BaseResponseStatus {
     USERS_EMPTY_EMAIL(false, 2015, "이메일을 입력해주세요."),
     POST_USERS_INVALID_EMAIL(false, 2016, "이메일 형식을 확인해주세요."),
     POST_USERS_INVALID_PASSWORD(false,2017,"비밀번호는 6-60자 사이어야 합니다."),
+    USERS_INVALID_PHONE(false,2023,"전화번호 형식을 확인해주세요."),
     USERS_EMPTY_PASSWORD(false, 2018, "비밀번호를 입력해주세요."),
     USERS_EMPTY_NEW_PASSWORD(false,2019,"새 비밀번호를 입력해주세요."),
     USERS_EMPTY_NEW_PASSWORD_CHECK(false,2020,"새 비밀번호 확인을 입력해주세요."),
     USERS_NO_EQUALS_PASSWORD(false,2021,"입력된 비밀번호가 일치하지 않습니다."),
     USERS_EMPTY_PHONE_NUMBER(false,2022,"전화번호를 입력해주세요."),
 
+    INVALID_PIN(false,2023,"핀번호는 4자리여야 합니다"),
     //[PATH] /users/payment
 
     EMPTY_CREDIT_NO(false, 2019, "카드 번호를 입력하세요."),
@@ -55,7 +66,7 @@ public enum BaseResponseStatus {
     EMPTY_HOLDER_YEAR(false, 2022, "출생연도를 입력해 주세요."),
     EMPTY_HOLDER_MONTH(false, 2023, "생월을 입력해 주세요."),
     EMPTY_HOLDER_DAY(false, 2024, "생일을 입력해 주세요."),
-
+    EMPTY_PIN(false,2026,"핀번호를 입력하세요"),
     PROFILE_EMPTY_NAME(false,2025,"프로필 이름을 입력하세요."),
 
     /**
@@ -67,9 +78,13 @@ public enum BaseResponseStatus {
     // [POST] /users
     DUPLICATED_EMAIL(false, 3013, "중복된 이메일입니다."),
     FAILED_TO_LOGIN(false,3014,"비밀번호가 틀렸습니다."),
+    FAILED_TO_PROFILE_LOGIN(false,3015,"핀번호가 틀렸습니다."),
     NO_EXIST_USER(false,3017,"없는 아이디입니다. 회원가입을 먼저 진행해주세요."),
     REST_STATUS_USER(false,3015,"휴면 계정 입니다."),
     PASSWORD_NO_EQUALS_ERROR(false, 3016, "비밀번호가 틀렸습니다."),
+    NO_EXIST_MEMBERSHIP(false,3018,"존재하지 않는 멤버십 유형입니다."),
+    DELETE_STATUS_PROFILE(false,3019,"삭제된 프로필입니다."),
+    NO_EXIST_PROFILE(false,3020,"존재하지 않는 프로필입니다. 프로필을 먼저 생성해주세요."),
 
 
     /**
@@ -85,9 +100,14 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_EMAIL(false,4017,"이메일 수정 실패"),
     MODIFY_FAIL_PASSWORD(false,4018,"비밀번호 수정 실패"),
     MODIFY_FAIL_PHONE_NUMBER(false,4019,"전화번호 수정 실패"),
+    MODIFY_FAIL_LOCK(false,4020,"잠금 설정 수정 실패"),
+    MODIFY_FAIL_VIEWED_HIDDEN(false,4021,"시청기록 숨김 실패"),
+    MODIFY_FAIL_RATED_STATUS(false,4022,"평가기록 삭제 실패"),
+    MODIFY_FAIL_RATED(false,4023,"평가기록 수정 실패"),
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
-    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다.");
-
+    PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다."),
+    PIN_DECRYPTION_ERROR(false,4013,"핀번호 복호화에 실패했습니다"),
+    PIN_ENCRYPTION_ERROR(false,4014,"핀번호 암호화에 실패하였습니다.");
 
     // 5000 : 필요시 만들어서 쓰세요
     // 6000 : 필요시 만들어서 쓰세요
