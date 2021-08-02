@@ -8,6 +8,7 @@ import com.example.demo.src.login.model.PostLoginRes;
 import com.example.demo.src.user.model.*;
 import com.example.demo.utils.AES128;
 import com.example.demo.utils.JwtService;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -50,6 +51,21 @@ public class LoginProvider {
         }
     }
 
+    public PostLoginRes logInKakao(PostLoginReq postLoginReq) throws BaseException{
+        try{
+            //휴면계정
+            if(checkUserStatus(postLoginReq.getEmail()).equals("R")){
+                throw new BaseException(REST_STATUS_USER);
+            }
+        }catch(Exception e){
+            throw new BaseException(NO_EXIST_USER);
+        }
+
+        int userId = loginDao.getPwd(postLoginReq).getUserId();
+        String jwt = jwtService.createJwt(userId);
+        return new PostLoginRes(userId,jwt);
+
+    }
     public PostLoginRes logIn(PostLoginReq postLoginReq) throws BaseException{
         try{
             //휴면계정
@@ -77,8 +93,8 @@ public class LoginProvider {
         else{
             throw new BaseException(FAILED_TO_LOGIN);
         }
-
     }
+
     //status 확인
     private String checkUserStatus(String email) throws BaseException {
         try{
@@ -87,6 +103,7 @@ public class LoginProvider {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
     public String getUserEmail(String access_Token) {
         String email = "";
         String reqURL = "https://kapi.kakao.com/v2/user/me";

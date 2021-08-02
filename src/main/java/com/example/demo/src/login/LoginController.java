@@ -53,6 +53,7 @@ public class LoginController {
             return new BaseResponse<>(exception.getStatus());
         }
     }
+
     /**
      * 로그인 API
      * [POST] /login
@@ -67,8 +68,8 @@ public class LoginController {
         PostLoginReq postLoginReq = new PostLoginReq();
         postLoginReq.setEmail(email);
         try{
-            PostLoginRes postLoginRes = loginProvider.logIn(postLoginReq);
-            return new BaseResponse<>(postLoginRes,SUCCESS_LOGIN);
+            PostLoginRes postLoginRes = loginProvider.logInKakao(postLoginReq);
+            return new BaseResponse<>(postLoginRes,SUCCESS_LOGIN_KAKAO);
         }catch (BaseException exception){
             return new BaseResponse<>(exception.getStatus());
         }
