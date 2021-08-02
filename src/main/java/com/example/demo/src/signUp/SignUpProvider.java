@@ -39,4 +39,11 @@ public class SignUpProvider {
         }
     }
 
+    public int checkMembership(String membershipCd) throws BaseException {
+        try{
+            return signUpDao.checkMembership(membershipCd);
+        }catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

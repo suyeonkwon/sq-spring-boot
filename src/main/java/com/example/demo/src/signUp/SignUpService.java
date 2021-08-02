@@ -9,6 +9,7 @@ import com.example.demo.src.signUp.model.PatchMembershipReq;
 import com.example.demo.src.signUp.model.PatchMembershipRes;
 import com.example.demo.utils.AES128;
 import com.example.demo.utils.JwtService;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,10 +66,10 @@ public class SignUpService {
     }
 
     public PatchMembershipRes modifyMembership(PatchMembershipReq patchMembershipReq) throws BaseException {
+        if(signUpProvider.checkMembership(patchMembershipReq.getMembershipCd()) == 0){
+            throw new BaseException(NO_EXIST_MEMBERSHIP);
+        }
         try{
-//            int userId = postCreditReq.getUserId();
-//            Date membershipStartedAt = signUpDao.createCredit(postCreditReq);
-//            return new PostCreditRes(userId, creditId);
             PatchMembershipRes patchMembershipRes = signUpDao.modifyMembership(patchMembershipReq);
             return patchMembershipRes;
         } catch(Exception exception){
