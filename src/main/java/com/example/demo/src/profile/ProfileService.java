@@ -49,8 +49,8 @@ public class ProfileService {
             int userId = postProfileReq.getUserId();
             int profileId = profileDao.createProfile(postProfileReq);
             //jwt 발급.
-            String jwt = jwtService.createJwt(profileId);
-            return new PostProfileRes(jwt,userId,profileId);
+//            String jwt = jwtService.createJwt(profileId);
+            return new PostProfileRes(userId,profileId);
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }

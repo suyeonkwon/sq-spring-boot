@@ -47,10 +47,11 @@ public class ProfileController {
     // Path-variable
     @ResponseBody
     @GetMapping("")
-    public BaseResponse<List<GetProfileRes>> getProfile(@RequestBody Profile profile) {
+    public BaseResponse<List<GetProfileRes>> getProfile() {
         // Get Users
         try{
-            List<GetProfileRes> getProfileRes = profileProvider.getProfile(profile.getUserId());
+            int userId = jwtService.getUserId();
+            List<GetProfileRes> getProfileRes = profileProvider.getProfile(userId);
             return new BaseResponse<>(getProfileRes,SUCCESS_PROFILE_SEARCH);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));

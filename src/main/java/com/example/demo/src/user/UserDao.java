@@ -51,12 +51,12 @@ public class UserDao {
                 "     , u.membershipCd\n" +
                 "     , c.commDtlNm membershipNm\n" +
                 "     , u.password\n" +
-                "     , u.membershipStartedAt\n" +
+                "     , date_format(u.membershipStartedAt,'%m월%Y') membershipStartedAt\n" +
                 "     , u.isMemberShipUsed\n" +
-                "     , date_sub(date_add(MAX(p.paymentedAt),interval 1 month),INTERVAL 1 day) nextPaymentedAt\n" +
+                "     , date_format(date_sub(date_add(MAX(p.paymentedAt),interval 1 month),INTERVAL 1 day),'%Y년%m월%d일') nextPaymentedAt\n" +
                 "     , replace(ct.creditNo,substr(ct.creditNo,1,12),'************') creditNo\n" +
                 "from USER_TB u\n" +
-                "    left outer join comm_dtl_tb c\n" +
+                "    left outer join COMM_DTL_TB c\n" +
                 "        on u.membershipCd = c.commDtlCd\n" +
                 "    left outer join PAYMENT_TB p\n" +
                 "        ON u.userId = p.userId\n" +
@@ -73,9 +73,9 @@ public class UserDao {
                         rs.getString("membershipCd"),
                         rs.getString("membershipNm"),
                         rs.getString("password"),
-                        rs.getDate("membershipStartedAt"),
+                        rs.getString("membershipStartedAt"),
                         rs.getString("isMemberShipUsed"),
-                        rs.getDate("nextPaymentedAt"),
+                        rs.getString("nextPaymentedAt"),
                         rs.getString("creditNo")),
                 getUserParams);
     }

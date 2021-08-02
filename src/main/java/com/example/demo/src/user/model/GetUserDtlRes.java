@@ -17,8 +17,8 @@ public class GetUserDtlRes {
     private String membershipCd;
     private String membershipNm;
     private String password;
-    private Date membershipStartedAt;
+    private String membershipStartedAt;
     private String isMemberShipUsed;
-    private Date nextPaymentedAt;
+    private String nextPaymentedAt;
     private String creditNo;
 }

@@ -23,7 +23,7 @@ public class ProfileDao {
     }
 
     public List<GetProfileRes> getProfile(int userId) {
-        String getProfileQuery = "select userId, profileId, profileNm, profileImgUrl from PROFILE_TB" +
+        String getProfileQuery = "select userId, profileId, profileNm, profileImgUrl, isLock from PROFILE_TB" +
                 " WHERE userId = ?";
         int getProfileParams = userId;
         return this.jdbcTemplate.query(getProfileQuery,
@@ -31,7 +31,8 @@ public class ProfileDao {
                         rs.getInt("userId"),
                         rs.getInt("profileId"),
                         rs.getString("profileNm"),
-                        rs.getString("profileImgUrl")),
+                        rs.getString("profileImgUrl"),
+                        rs.getString("isLock")),
                         getProfileParams);
     }
 

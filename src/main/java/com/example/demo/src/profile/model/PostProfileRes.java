@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class PostProfileRes {
-    private String jwt;
+//    private String jwt;
     private int userId;
     private int profileId;
 //    private String profileNm;

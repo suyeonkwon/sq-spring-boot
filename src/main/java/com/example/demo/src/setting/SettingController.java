@@ -144,6 +144,7 @@ public class SettingController {
             if(userId != userIdxByJwt){
                 return new BaseResponse<>(INVALID_USER_JWT);
             }
+
             settingService.modifyRated(patchRatedReq);
             return new BaseResponse<>(SUCCESS_MODIFY_RATED);
         } catch (BaseException exception) {

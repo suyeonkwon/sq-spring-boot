@@ -13,4 +13,5 @@ public class GetProfileRes {
     private int profileId;
     private String profileNm;
     private String profileImgUrl;
+    private String isLock;
 }

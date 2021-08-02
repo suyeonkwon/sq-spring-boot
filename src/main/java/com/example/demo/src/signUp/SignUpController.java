@@ -15,7 +15,7 @@ import static com.example.demo.utils.ValidationRegex.isRegexEmail;
 import static com.example.demo.utils.ValidationRegex.isRegexPassword;
 
 @RestController
-@RequestMapping("/app/sign-up")
+@RequestMapping("/app/signup")
 public class SignUpController {
     final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -63,7 +63,7 @@ public class SignUpController {
 
     /**
      * 회원가입 API
-     * [POST] /sign-up
+     * [POST] /sign-up/password
      * @return BaseResponse<PostSignUpRes>
      */
     // Body

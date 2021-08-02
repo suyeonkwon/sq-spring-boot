@@ -34,6 +34,12 @@ public enum BaseResponseStatus {
     SUCCESS_RATED_SEARCH(true,1000,"평가기록 조회 성공"),
     SUCCESS_MODIFY_RATED_STATUS(true,1000,"평가기록 삭제 성공"),
     SUCCESS_MODIFY_RATED(true,1000,"평가기록 수정 성공"),
+    SUCCESS_KEEP_SEARCH(true,1000,"찜목록 조회 성공"),
+    SUCCESS_KEEP_POST(true,1000,"찜 등록 성공"),
+    SUCCESS_MODIFY_KEEP_STATUS(true,1000,"찜 삭제 성공"),
+    SUCCESS_CONTENT_DTL_SEARCH(true,1000,"콘텐츠 상세 조회 성공"),
+    SUCCESS_CONTENT_EPISODE(true,1000,"콘텐츠 에피소드 조회 성공"),
+    SUCCESS_CONTENT_RELEASE(true,1000,"공개예정 콘텐츠 조회 성공"),
     /**
      * 2000 : Request 오류
      */
@@ -104,6 +110,7 @@ public enum BaseResponseStatus {
     MODIFY_FAIL_VIEWED_HIDDEN(false,4021,"시청기록 숨김 실패"),
     MODIFY_FAIL_RATED_STATUS(false,4022,"평가기록 삭제 실패"),
     MODIFY_FAIL_RATED(false,4023,"평가기록 수정 실패"),
+    MODIFY_FAIL_KEEP_STATUS(false,4024,"찜 삭제 실패"),
     PASSWORD_ENCRYPTION_ERROR(false, 4011, "비밀번호 암호화에 실패하였습니다."),
     PASSWORD_DECRYPTION_ERROR(false, 4012, "비밀번호 복호화에 실패하였습니다."),
     PIN_DECRYPTION_ERROR(false,4013,"핀번호 복호화에 실패했습니다"),

@@ -84,7 +84,7 @@ public class ProfileProvider {
         }
 
         int profileId = postProfileLoginReq.getProfileId();
-        String profileJwt = jwtService.createJwt(profileId);
+        String profileJwt = jwtService.createProfileJwt(profileId);
         return new PostProfileLoginRes(profileId,profileJwt);
 
     }
