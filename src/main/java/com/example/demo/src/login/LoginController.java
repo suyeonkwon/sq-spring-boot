@@ -63,6 +63,7 @@ public class LoginController {
     @GetMapping("/kakao/oauth")
     public BaseResponse<PostLoginRes> logInKakao(@RequestParam("code") String code){
         String access_token = loginService.getAccessToken(code);
+        System.out.println("access_token= "+ access_token);
         String email = loginProvider.getUserEmail(access_token);
 
         PostLoginReq postLoginReq = new PostLoginReq();
