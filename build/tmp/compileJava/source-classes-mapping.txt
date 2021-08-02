@@ -160,11 +160,11 @@ com/example/demo/src/setting/SettingService.java
  com.example.demo.src.setting.SettingService
 com/example/demo/src/content/ContentService.java
  com.example.demo.src.content.ContentService
-com/example/demo/src/login/LoginController.java
- com.example.demo.src.login.LoginController
-com/example/demo/src/payment/PaymentService.java
- com.example.demo.src.payment.PaymentService
 com/example/demo/src/profile/ProfileController.java
  com.example.demo.src.profile.ProfileController
+com/example/demo/src/payment/PaymentService.java
+ com.example.demo.src.payment.PaymentService
+com/example/demo/src/login/LoginController.java
+ com.example.demo.src.login.LoginController
 com/example/demo/src/login/LoginService.java
  com.example.demo.src.login.LoginService

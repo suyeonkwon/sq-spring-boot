@@ -60,7 +60,8 @@ public class LoginService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=93a0f1ad02bb4983b9452ad50c99fec2");
-            sb.append("&redirect_uri=http://127.0.0.1:9000/app/login/kakao/oauth");
+//            sb.append("&redirect_uri=http://127.0.0.1:9000/app/login/kakao/oauth");
+            sb.append("&redirect_uri=https://suyeon.shop/app/login/kakao/oauth");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
