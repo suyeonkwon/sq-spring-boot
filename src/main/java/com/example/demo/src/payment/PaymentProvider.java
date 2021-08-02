@@ -3,6 +3,7 @@ package com.example.demo.src.payment;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.src.payment.model.GetPaymentDtlRes;
+import com.example.demo.src.payment.model.GetPaymentMembershipRes;
 import com.example.demo.src.user.model.GetUserDtlRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
@@ -34,6 +35,16 @@ public class PaymentProvider {
         try {
             List<GetPaymentDtlRes> getPaymentDtl = paymentDao.getPaymentDtl(userId);
             return getPaymentDtl;
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    public GetPaymentMembershipRes getPaymentMembership(int userId) throws BaseException {
+        try {
+            GetPaymentMembershipRes getPaymentMembership = paymentDao.getPaymentMembership(userId);
+            return getPaymentMembership;
         } catch (Exception exception) {
             exception.printStackTrace();
             throw new BaseException(DATABASE_ERROR);

@@ -2,6 +2,7 @@ package com.example.demo.src.payment;
 
 
 import com.example.demo.src.payment.model.GetPaymentDtlRes;
+import com.example.demo.src.payment.model.GetPaymentMembershipRes;
 import com.example.demo.src.payment.model.PatchCreditReq;
 import com.example.demo.src.user.model.GetUserDtlRes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +61,31 @@ public class PaymentDao {
         return this.jdbcTemplate.update(modifyCreditQuery,modifyCreditQueryParams);
     }
 
+    public GetPaymentMembershipRes getPaymentMembership(int userId) {
+        String getPaymentMembershipQuery = "select a.userId\n" +
+                "     ,  concat(a.membership,':월',a.price,'원') membership\n" +
+                "     , concat('동시접속',a.simultanConn,'명') simultanConn\n" +
+                "     , max(a.nextMonth) nextMonth\n" +
+                "from (\n" +
+                "     select u.userId\n" +
+                "          , date_format(date_sub(date_add(p.paymentedAt,INTERVAL 1 MONTH),INTERVAL 1 DAY),'%Y년%m월%d일') nextMonth\n" +
+                "          , cm.commDtlNm membership\n" +
+                "          , format(m.price,0) price\n" +
+                "          , m.simultanConn\n" +
+                "    from PAYMENT_TB p\n" +
+                "        left outer join USER_TB u on p.userId = u.userId\n" +
+                "        left outer join MEMBERSHIP_TB m on u.membershipCd = m.membershipCd\n" +
+                "        left outer join COMM_DTL_TB cm on cm.commDtlCd = u.membershipCd and cm.commCd = 'membership'\n" +
+                "    where p.userId = ? and\n" +
+                "          u.isMemberShipUsed = 'Y'\n" +
+                "         )a";
+        int getPaymentMembershipParams = userId;
+        return this.jdbcTemplate.queryForObject(getPaymentMembershipQuery,
+                (rs, rowNum) -> new GetPaymentMembershipRes(
+                        rs.getInt("userId"),
+                        rs.getString("membership"),
+                        rs.getString("simultanConn"),
+                        rs.getString("nextMonth")),
+                getPaymentMembershipParams);
+    }
 }

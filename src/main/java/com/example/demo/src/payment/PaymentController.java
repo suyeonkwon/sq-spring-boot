@@ -2,10 +2,10 @@ package com.example.demo.src.payment;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
+import com.example.demo.src.payment.model.GetPaymentMembershipRes;
+import com.example.demo.src.payment.model.GetPaymentReq;
 import com.example.demo.src.payment.model.GetPaymentDtlRes;
 import com.example.demo.src.payment.model.PatchCreditReq;
-import com.example.demo.src.user.model.GetUserDtlRes;
-import com.example.demo.src.user.model.GetUserRes;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,21 +36,42 @@ public class PaymentController {
     }
     /**
      * 결제 상세 조회 API
-     * [GET] /payment/:userIdx
+     * [GET] /payment
      * @return BaseResponse<GetUserRes>
      */
     // Path-variable
     @ResponseBody
-    @GetMapping("/{userId}") // (GET) 127.0.0.1:9000/app/users/:userIdx
-    public BaseResponse<List<GetPaymentDtlRes> > getPaymentDtl(@PathVariable("userId") int userId) {
+    @GetMapping("") // (GET) 127.0.0.1:9000/app/users/:userIdx
+    public BaseResponse<List<GetPaymentDtlRes> > getPaymentDtl(@RequestBody GetPaymentReq getPaymentReq) {
         // Get Users
         try{
+            int userId = getPaymentReq.getUserId();
             List<GetPaymentDtlRes> getPaymentDtlRes = paymentProvider.getPaymentDtl(userId);
             return new BaseResponse<>(getPaymentDtlRes,SUCCESS_PAYMENT_DTL_SEARCH);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }
     }
+    /**
+     * 결제 상세 조회 API
+     * [GET] /payment/membership
+     * @return BaseResponse<GetUserRes>
+     */
+    // Path-variable
+    @ResponseBody
+    @GetMapping("/membership") // (GET) 127.0.0.1:9000/app/users/:userIdx
+    public BaseResponse<GetPaymentMembershipRes> getPaymentMembership() {
+        try{
+            //jwt에서 idx 추출.
+            int userIdxByJwt = jwtService.getUserId();
+
+            GetPaymentMembershipRes getPaymentMembershipRes = paymentProvider.getPaymentMembership(userIdxByJwt);
+            return new BaseResponse<>(getPaymentMembershipRes,SUCCESS_PAYMENT_MEMBERSHIP_SEARCH);
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
     /**
      * 결제정보 변경 API
      * [PATCH] /payment/credit
@@ -61,11 +82,13 @@ public class PaymentController {
     public BaseResponse<String> modifyCredit(@RequestBody PatchCreditReq patchCreditReq){
         try {
             //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserId();
-            //userIdx와 접근한 유저가 같은지 확인
-//            if(userId != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
+            int userIdxByJwt = jwtService.getUserId();
+            int userId = patchCreditReq.getUserId();
+//            userIdx와 접근한 유저가 같은지 확인
+            if(userId != userIdxByJwt){
+                return new BaseResponse<>(INVALID_USER_JWT);
+            }
+
             if(patchCreditReq.getCreditNo() == null || patchCreditReq.getCreditNo() == ""){
                 return new BaseResponse<>(EMPTY_CREDIT_NO);
             }
@@ -86,8 +109,7 @@ public class PaymentController {
             }
             paymentService.modifyCredit(patchCreditReq);
 
-            String result = "";
-            return new BaseResponse<>(result,SUCCESS_MODIFY_CREDIT);
+            return new BaseResponse<>(SUCCESS_MODIFY_CREDIT);
         } catch (BaseException exception) {
             exception.printStackTrace();
             return new BaseResponse<>((exception.getStatus()));
