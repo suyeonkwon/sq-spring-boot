@@ -7,10 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Profile {
-    private int userId;
+public class PostProfileLoginRes {
     private int profileId;
-//    private String profileImgUrl;
-    private String pin;
-    private String isLock;
+    private String profileJwt;
 }
